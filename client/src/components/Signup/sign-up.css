@@ -1,0 +1,290 @@
+* {
+
+    /* font-size: 20px; */
+    /* background-color: #F3F2F0; */
+    color: rgba(0, 0, 0, 0.9);
+    font-family: apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.signup-page {
+    background-color: #F3F2F0;
+    height: 100vh;
+}
+
+.signun-container {
+    /* width: auto;
+    background-color: ffffff;
+    width: 22vw;
+    /* height: 33vw; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35vw;
+    /* position:relative; */
+    /* margin-top: 100px; */
+    /* border-radius: 10px; */
+    /* box-shadow: #F0F0F0; */
+    /* box-shadow:0px 0px 25px -7px;
+    padding: 50px 30px 50px 50px;
+    vertical-align: baseline;
+    background: transparent;
+    font-size: 20px;  */
+    max-width: 400px;
+    margin: 0 auto;
+    /* padding-top: 24px; */
+    background-color: #ffffff;
+    position: relative;
+    border-radius: 0;
+    border-radius: 25px;
+
+
+}
+section{
+    border-radius: 10px;
+}
+
+.logo {
+    width: 150px;
+    /* width: 8vw; */
+    height: 4vh;
+    /* margin-left: 370px;
+    margin-top: 2vh; */
+  
+    text-align: left;
+    margin-left: 20%;
+    margin-top: 2vh;
+}
+
+.signup-data {
+    display: flex;
+    border-radius: 10px;
+    padding-top: 20px;
+    flex-direction: column;
+    gap: 16px;
+    padding: 6%;
+    font-size: 20px;
+    background-color: #ffffff;
+}
+
+.signup-form {
+    /* display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 20px; */
+    /* align-items: center; */
+    width: 100%;
+    /* display: -webkit-box;
+    display: -ms-flexbox; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+    
+}
+.signup-form label{
+    text-align: start;
+    padding-bottom: 5px;
+    color:rgba(0, 0, 0, 0.75)!important;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* .signup-heading {
+    color: #000;
+    text-align: center;
+    font-family: "Integral CF";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+} */
+.signup-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+}
+.signup-heading {
+    /* font-family: Satoshi; */
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+    /* padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important; */
+
+}
+
+.quote {
+
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    /* margin-bottom: 24px; */
+    margin-top: 20px;
+    text-align: center;
+    /* padding: 16px 16px 24px 16px; */
+}
+
+.input-name {
+    width: 100%;
+    /* border-radius: 5px; */
+    height: 5vh;
+    /* padding-left: 10px; */
+    border: 0.2px solid rgba(0, 0, 0, 0.75);
+    font-size: 20px;
+    size:small;
+        /* font-family: apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif; */
+
+
+        /* font-size: 1rem;
+    line-height: 1.33333;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+    position: relative;
+    z-index: 1;
+    height: 6vh;
+    padding: 28px 12px 6px;
+    border-radius: 4px !important; */
+}
+
+.inputemail {
+    width: 100%;
+    border-radius: 5px;
+    height: 5vh;
+    padding-left: 10px;
+    border: 0.2px solid rgba(0, 0, 0, 0.75);
+    font-size: 20px;
+
+
+}
+
+.input-password {
+    width: 100%;
+    border-radius: 5px;
+    height: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0.2px solid rgba(0, 0, 0, 0.75);
+    font-size: 20px;
+    background-color: #ffffff;
+}
+
+
+
+.btn-submit {
+    width: 100%;
+    border-radius: 30px;
+    height: 5vh;
+    padding-left: 10px;
+    color: #F0F0F0;
+    background-color: #2E64C0;
+    border: 0.2px solid #0A66C2;
+    font-size: 20px;
+    font-weight: 600;
+
+
+}
+
+.terms-policy {
+    /* width: 9px; */
+    line-height: 16px;
+    /* padding-left: 50px; */
+    font-size: 12px;
+    text-align: center;
+    font-family: -apple-system, system-ui;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+
+}
+
+.separator {
+    color: #E7E7E9;
+    /* position: absolute; */
+    /* height: 36vh;
+    width: -34px;
+    left: 10vw;
+    transform: rotate(90deg);
+    top:17vh */
+
+}
+
+/* .btn.css-sghohy-MuiButtonBase-root-MuiButton-root {
+    background-color: black;
+} */
+
+.choice_seprator {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #E7E7E9;
+}
+
+.or {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 15px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.9);;
+}
+
+.or::before {
+    content: "  ";
+    width: 150px;
+    height: 1px;
+    background: #E7E7E9;
+    position: absolute;
+    right: 180%;
+    top: 60%;
+}
+
+.or::after {
+    content: "";
+    width: 150px;
+    height: 1px;
+    background: #E7E7E9;
+    left: 180%;
+    top: 60%;
+    position: absolute;
+}
+.btn-google-signun{
+    /* margin-right: 5vw;
+    width: 15vw;
+    height: 4vh; */
+    width: 90%;
+    border-radius: 30px;
+    height: 42px;
+    /* padding-left: 20px; */
+    color: #F0F0F0;
+    /* background-color: #0A66C2; */
+    /* border: 0.2px solid #A2A2A2;  */
+    font-size: 20px;
+    /* border-radius: 50px !important; */
+}
+.getHelp{
+    /* font-family: Satoshi; */
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 24px;
+    margin-top: 15px;
+    text-align: center;
+}
