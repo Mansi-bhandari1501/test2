@@ -6,12 +6,12 @@ import SignUpImg from "../../assets/hello.jpg"
 import Rating from '@mui/material/Rating';
 import { CardContent, CardMedia } from "@mui/material"
 const Cards = ({Item}) => {
-console.log(Item.student)
+console.log(Item)
     const [isLoading, setIsLoading] = useState(true)
     // console.log(Item?.student?.map((i) => i))
 console.log(Item?.student)
-const Photos = Item.student;
-console.log(Photos)
+// const Photos = Item.student;
+// console.log(Photos)
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false)
@@ -28,19 +28,14 @@ console.log(Photos)
             </SkeletonTheme>
         </div>
         :
-        <NavLink to= {`/product/${Item.userid}`} style={{textDecoration:"none", color:"white"}}>
+        <NavLink to= {`/product/${Item._id}`} style={{textDecoration:"none", color:"white"}}>
             <div className="cards">
-            {/* <CardMedia
-            className="cards__img"
-                key={Item?.userid}
-                component="img"
-                // height={images.length > 1 ? "100%" : "100%"}
-                // width={images.length > 1 ? "50%" : "100%"}
-                image={`${Item?.student}`}
-                alt="post image"
-                sx={{ marginBottom: "5px", display: "inline-flex" }}
-              /> */}
-                <img className="cards__img" src= {Photos} alt="hello" />
+            {
+            Item?.coverimage?.map((i) => (
+              <img src={`http://localhost:8080/${i}`} alt="" style={{width: '500px'}}/>
+            ))
+            }
+                {/* <img className="cards__img" src= {Item.coverimage} alt="hello" /> */}
                 {/* <CardContent sx={{display: "flex", flexDirection: "column", width: '100%', alignItems: 'center', justifyContent: 'space-around', padding: '0'}}>
           {
             photos?.map((i) => (
@@ -49,14 +44,15 @@ console.log(Photos)
             } */}
                 {/* </CardContent> */}
                 <div className="cards__overlay">
-                    <div className="card__title">{Item?.studentname}</div>
+                    <div className="card__title">{Item?.title}</div>
                     <div className="card__runtime">
-                        {"fasdfsdgf"}
+                        {Item?.Author}
+                       
                         {/* {movie?movie.release_date:""} */}
                         {/* <span className="card__rating">{5}<i className="fas fa-star" /></span> */}
                         <Rating className="card__rating" name="read-only" value={5} readOnly />
                     </div>
-                    <div className="card__description">"dashjdbgsajfvguasvfusfuysy"</div>
+                    <div className="card__description">{Item?.description}</div>
                 </div>
             </div>
         // </NavLink>

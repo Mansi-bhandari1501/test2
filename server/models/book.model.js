@@ -23,8 +23,8 @@ const addbookSchema = new mongoose.Schema({
         require:true,
     },
     coverimage:{
-       type:String,
-       require:true
+        type: [String],
+        default: []
     },
     
 })

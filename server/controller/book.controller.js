@@ -1,5 +1,6 @@
 
 import errorHandler from '../lib/utils.js';
+import { bookModel } from '../models/book.model.js';
 import { bookService } from '../service/index.js';
 
 export const addbook = async (req,res) => {
@@ -24,7 +25,7 @@ export const getbook = async (req,res) => {
         console.log("response",response)
         return res.status(200).send({
             success:true,
-            message: 'Book Fetched succefully',
+            message: 'Book Fetched successfully',
             book: response
         })
     }
@@ -54,7 +55,7 @@ export const getAllBook = async (req,res) => {
         console.log("response",response)
         return res.status(200).send({
             success:true,
-            message: 'Book deleted succefully',
+            message: ' Book fetched succesfully',
             book: response
         })
     }
@@ -63,12 +64,43 @@ export const getAllBook = async (req,res) => {
         errorHandler(res,error);
     }
 }
+const getAllProductController = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      // Search query
+      const searchQuery = req.query.q
+        ? {
+            $or: [
+              { title: { $regex: req.query.q, $options: "i" } },
+              { description: { $regex: req.query.q, $options: "i" } },
+              { category: { $regex: req.query.q, $options: "i" } },
+              { author: { $regex: req.query.q, $options: "i" } },
+            ],
+          }
+        : {};
+      const products = await bookModel.find(searchQuery)
+        .skip((page - 1) * limit)
+        .limit(limit);
+      const totalCount = await bookModel.countDocuments(searchQuery);
+      res.json({
+        page,
+        totalPages: Math.ceil(totalCount / limit),
+        totalCount,
+        products,
+      });
+    } catch (error) {
+      console.error("Error getting products:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
 
 const bookController = {
     addbook,
     getbook,
     deletebook,
-    getAllBook
+    getAllBook,
+    getAllProductController
 }
 
 export default bookController;

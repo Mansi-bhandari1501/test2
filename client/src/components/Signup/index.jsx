@@ -275,7 +275,7 @@ dispatch(registerUser(data))
     console.log("hello");
     console.log(res.status)
     if (res.status === 200 || res.status === 201) {
-      navigate("/login");
+      navigate("/");
     }
   })
   .catch((err) => {

@@ -26,22 +26,40 @@ const addbook = async (req) => {
 const getBook = async(req)=>{
     console.log("key",req.params.key)
     
-    try{
-        const books = await bookModel.find(
-            {
-                "$or":[
-                    {"title":{$regex:req.params.key}},
-                    {"author":{$regex:req.params.key}},
-                    {"category":{$regex:req.params.key}}                    
-                ]
-            }
-        )
-        console.log("cgcg",books)
-        return books
+    // try{
+    //     const books = await bookModel.find(
+    //         {
+    //             "$or":[
+    //                 {"title":{$regex:req.params.key}},
+    //                 {"author":{$regex:req.params.key}},
+    //                 {"category":{$regex:req.params.key}}                    
+    //             ]
+    //         }
+    //     )
+    //     console.log("cgcg",books)
+    //     return books
 
-    }
-    catch(error){
-        throw(error)
+    // }
+    // catch(error){
+    //     throw(error)
+    // }
+    try {
+        // const userId = req.id
+        // console.log(userId)
+        const { body } = req.query
+        const books = await bookModel.find({ "$or": [{ "title": { $regex: ".*" + body + ".*", $options: 'i' } }, { "author": { $regex: ".*" + body + ".*", $options: 'i' } }, { "genre": { $regex: ".*" + body + ".*", $options: 'i' } }] })
+
+        if (books.length > 0) {
+            return books
+        }
+        else {
+            return 404
+        }
+
+
+    } catch (err) {
+        console.log(err)
+        return err
     }
     
 }
@@ -58,7 +76,11 @@ const deleteBook = async(req)=>{
 }
 const getAllBook = async(req)=>{
     try{
-        const books = await bookModel.find();
+        console.log("get request")
+        const books = await bookModel.find({})
+        .sort({ createdAt: 'descending' })
+        // const books = await bookModel.findAll();
+        console.log(books)
         return books
     }
     catch(error){

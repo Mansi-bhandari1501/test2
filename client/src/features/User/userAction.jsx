@@ -5,7 +5,7 @@ import { ACTION_TYPE } from "./userType";
 
 export const registerUser = createAsyncThunk(
 ACTION_TYPE.ADD_USER,
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password,role }, { rejectWithValue }) => {
     try {
       const config = {
         headers: {
@@ -13,7 +13,7 @@ ACTION_TYPE.ADD_USER,
         },
       };  
       console.log(email,password)
-      const res = await axios.post(`http://localhost:8080/users/register`,{email,password},config)
+      const res = await axios.post(`http://localhost:8080/users/register`,{email,password,role },config)
 
       // const res = await userRegister({email,password},config)
       console.log(res)

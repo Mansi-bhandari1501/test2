@@ -442,7 +442,7 @@ import { loginUser } from "../../features/User/userAction";
       password:password,
 
     }
-    console.log(email,password,"🤦‍♂️🤦‍♂️🤦‍♂️🤦‍♂️")
+    console.log(email,password,"Loggs")
     const handleSubmit = async (e) => {
       e.preventDefault();
       console.log("frontend", email, password);
@@ -453,7 +453,7 @@ import { loginUser } from "../../features/User/userAction";
                   console.log(res.data.user._id)
                   localStorage.setItem("auth", JSON.stringify(res.data));
                   // navigate(location.state || "/");
-                  navigate('/products');
+                  navigate('/home');
               }
               console.log(res);
           });

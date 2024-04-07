@@ -10,11 +10,13 @@ import axios from "axios"; // Import axios library
 import Typography from "@mui/material/Typography";
 import { Stack, TextField } from "@mui/material";
 import Header from "../Navbar";
-
+import { useDispatch, useSelector } from "react-redux";
 
 
 const AddBook = () => {
 
+  const user = useSelector((state) => state);
+console.log(user)
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -57,10 +59,10 @@ const AddBook = () => {
     formData.append("category", newUser.category);
     formData.append("description", newUser.description);
     formData.append("coverimage", newUser.coverimage);
-
+console.log(newUser)
     try {
       const res = await axios.post(
-        "http://localhost:8000/book/addbook",
+        "http://localhost:8080/book/addbook",
         formData
       );
       console.log(res);

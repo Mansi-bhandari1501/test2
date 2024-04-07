@@ -5,7 +5,7 @@ import Header from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
 import FormDialog from '../../components/AddProduct'
-import AddBook from '../../components/AddProduct/AddBook'
+import AddBook from '../../components/AddProduct/AddProduct'
 // import { Button, Stack } from 'react-bootstrap'
 
 const Home = () => {

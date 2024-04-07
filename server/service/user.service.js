@@ -7,6 +7,7 @@ const registerUser = async (payload) => {
   try {
     const { email, password , role} = payload.body;
     console.log(payload.body,"payload")
+    console.log(email, password , role)
     if (!email) {
       throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
@@ -37,7 +38,7 @@ const registerUser = async (payload) => {
     const user = await new UserModel({
       email,
       password: hashed_password,
-      role:role,
+      role :role,
     }).save();
     console.log(user,"USERSSS");
     return { user };

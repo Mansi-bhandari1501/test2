@@ -8,8 +8,10 @@ import ErrorPage from '../components/ErrorComponent';
 import Home from '../pages/Home';
 import AllCards from '../components/AllCards';
 import ProductDetail from '../components/ProductDetails';
-import AddBook from '../components/AddProduct/AddBook';
+import AddBook from '../components/AddProduct/AddProduct';
 import AddBookPage from '../pages/Addproducts';
+import Protected from './protected';
+import Admin from './isAdmin';
 // import HomePage from '../pages/Home/home';
 // import Signuppage from '../pages/Signup/sign-up';
 // import Profile from '../pages/Profile/profile';
@@ -31,19 +33,20 @@ const Router = () => {
         {/* <Switch> */}
           <Route path='*' element={<ErrorPage />}/>
           <Route path='/signup' element={<Signuppage />} />
-          <Route path='/login' element={<LoginPage />} />
+          <Route path='/' element={<LoginPage />} />
           <Route path='/home' element={<Home />} />
-          <Route path='/add' element={<AddBookPage/>} />
+          {/* <Route path="/home" element={<Protected Component={Home} />} /> */}
+          {/* <Route path='/addproduct' element={< Admin Component={AddBookPage} />}/> */}
+          <Route path='/addproduct' element={AddBookPage} />
           <Route exact path="/products" element={<AllCards/>} />
           <Route exact path="/product/:id" element={<ProductDetail/>} />
           {/* <Route path='/' element={<Example />} /> */}
-          {/* <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/message' element={<Message socket={socket}/>} />
+        
+          {/* <Route path='/message' element={<Message socket={socket}/>} />
           <Route path='/mynetwork' element={<Network />} />
           <Route path='/notifications' element={<Notifications socket={socketNotify}/>} />
           <Route path='/mynetwork/invitation-manager' element={<ManageNetwork />} />
-          <Route path='/mynetwork/invite-connect/connections' element={<ActiveConnections />} /> */}
+          <Route path='/mynetwork/invite-connect/connections' element={<ActiveConnections />} /> */} 
           {/* <ToastContainer /> */}
           {/* </Switch> */}
         </Routes>
