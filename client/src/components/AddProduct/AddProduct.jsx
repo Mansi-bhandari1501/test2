@@ -8,13 +8,15 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react"; // Import useState hook
 import axios from "axios"; // Import axios library
 import Typography from "@mui/material/Typography";
-import { Stack, TextField } from "@mui/material";
+import { Box, Stack, TextField } from "@mui/material";
 import Header from "../Navbar";
 import { useDispatch, useSelector } from "react-redux";
+import { createPost } from "../../features/product/productAction";
+import { useNavigate } from "react-router";
 
 
 const AddBook = () => {
-
+const navigate = useNavigate();
   const user = useSelector((state) => state);
 console.log(user)
   const VisuallyHiddenInput = styled("input")({
@@ -30,15 +32,14 @@ console.log(user)
   });
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+const dispatch = useDispatch()
   const [newUser, setNewAuthor] = useState({
     title: "",
     author: "",
     category: "",
     description: "",
-    coverimage: "",
   });
-
+// const[image]
   const handleChange = (e) => {
     setNewAuthor({
       ...newUser,
@@ -51,31 +52,35 @@ console.log(user)
 
   };
 
+  const token = user.userToken;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", newUser.title);
-    formData.append("author", newUser.author);
-    formData.append("category", newUser.category);
-    formData.append("description", newUser.description);
-    formData.append("coverimage", newUser.coverimage);
-console.log(newUser)
-    try {
-      const res = await axios.post(
-        "http://localhost:8080/book/addbook",
-        formData
-      );
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+    console.log(newUser)
+    // const formData = new FormData();
+    // await formData.append("title", newUser.title);
+    // await formData.append("author", newUser.author);
+    // await formData.append("category", newUser.category);
+    // await formData.append("description", newUser.description);
+    // await formData.append("image", newUser.coverimage[0]);
+    //  console.log(formData)
+     dispatch(createPost({newUser,token}))
+     navigate('/dashboard')
+    // try {
+    //   const res = await axios.post(
+    //     "http://localhost:8080/book/addbook",
+    //     formData
+    //   );
+    //   console.log(res);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
-    <>
+    <Box  bgcolor={"#F8FAFB"}>
       {/* <TopBar /> */}
       <Header/>
-      <Stack className="addbookMain" flexDirection={"row"}>
+      <Stack className="addbookMain" flexDirection={"row"} marginTop={"50px"}>
         <Stack width={"0"}>
           {/* <SideBar /> */}
         </Stack>
@@ -107,7 +112,7 @@ console.log(newUser)
                   textAlign: "center",
                 }}
               >
-                ADD BOOK
+                ADD TEST
               </Typography>
 
               <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -206,8 +211,9 @@ console.log(newUser)
                   value={newUser.description}
                   onChange={handleChange}
                 ></TextField>
+               
                 <Stack>
-                  <Button
+                  {/* <Button
                     style={{
                       marginBottom: "2%",
                       width: "20%",
@@ -227,7 +233,7 @@ console.log(newUser)
                       name="photo"
                       onChange={handlePhoto}
                     />
-                  </Button>
+                  </Button> */}
 
                   <Button
                     type="submit"
@@ -246,7 +252,7 @@ console.log(newUser)
           </Card>
         </Stack>
       </Stack>
-    </>
+    </Box>
   );
 };
 

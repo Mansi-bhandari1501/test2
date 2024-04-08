@@ -8,7 +8,7 @@ const Admin = (props) => {
   const { Component } = props;
   const navigate = useNavigate();
   useEffect(() => {
-    if (user !== "user") navigate("/");
+    if (user !== "admin") navigate("/");
   }, [user, navigate]);
 
   return (

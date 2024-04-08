@@ -6,50 +6,44 @@ import { Link } from "react-router-dom";
 import Cards from "../card/card";
 import AllCards from "../AllCards";
 // import MovieList from "../../components/movieList/movieList";
-
+import Image from "../../assets/Quizzes-By-Class.jpg"
+import Image1 from "../../assets/img1.jpg"
+import { Stack } from "@mui/material";
 const CarouselCompnt = () => {
 
-    const [ popularMovies, setPopularMovies ] = useState([])
+    const [popularMovies, setPopularMovies] = useState([])
 
     useEffect(() => {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US")
-        .then(res => res.json())
-        .then(data => setPopularMovies(data.results))
+            .then(res => res.json())
+            .then(data => setPopularMovies(data.results))
     }, [])
 
     return (
         <>
-            <div className="poster" style={{margin:"20px"}}>
+            <div className="poster" style={{ margin: "20px",marginBottom:"80px" ,height:"60vh"}}>
                 <Carousel
                     showThumbs={false}
-                    autoPlay={true}
-                    transitionTime={2}
+                    autoPlay
+                    // transitionTime={1}
                     infiniteLoop={true}
                     showStatus={false}
-                    emulateTouch={true}
+                    // emulateTouch={true}
+                    
                 >
-                    {
-                        popularMovies.map(movie => (
-                            <Link style={{textDecoration:"none",color:"white"}} to={`/movie/${movie.id}`} >
-                                <div className="posterImage">
-                                    <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
-                                </div>
-                                <div className="posterImage__overlay">
-                                    <div className="posterImage__title">{movie ? movie.original_title: ""}</div>
-                                    <div className="posterImage__runtime">
-                                        {movie ? movie.release_date : ""}
-                                        <span className="posterImage__rating">
-                                            {movie ? movie.vote_average :""}
-                                            <i className="fas fa-star" />{" "}
-                                        </span>
-                                    </div>
-                                    <div className="posterImage__description">{movie ? movie.overview : ""}</div>
-                                </div>
-                            </Link>
-                        ))
-                    }
+                    <Stack>
+
+                        <img src={Image1} alt='' style={{ height:"65vh"}}/>
+
+                    </Stack>
+
+                    <Stack>
+
+                        <img src={Image} alt='' style={{  height:"65vh"}}/>
+
+                    </Stack>
                 </Carousel>
-                <AllCards />
+
                 {/* <MovieList /> */}
             </div>
         </>

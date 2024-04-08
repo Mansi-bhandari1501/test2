@@ -36,6 +36,7 @@ const Header = () => {
   const [anchorE2, setAnchorE2] = React.useState(null);
   const open = Boolean(anchorEl);
   const open1 = Boolean(anchorE2);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -44,6 +45,7 @@ const Header = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    navigate("/dashboard")
   };
   const handleClose1 = () => {
     setAnchorE2(null);
@@ -58,7 +60,7 @@ const Header = () => {
 
   const fetchData = async () => {
     try {
-      var url = `http://localhost:8080/books/search?q=${search}`;
+      var url = `http://localhost:8080/tests/search?q=${search}`;
 
       // if (category) {
       //   url = url + `&category=${category}`
@@ -67,7 +69,7 @@ const Header = () => {
       //   url = url + `&search=${search}`
       // }
       const response = await axios.get(url);
-      console.log("response.data.Info:", response.data.products);
+      console.log("response.data.Info:", response);
       setdata(response.data.products);
       // setCount(Math.ceil(response.data.Count / size))
       // console.log('data to show', data[0]._id)
@@ -106,7 +108,7 @@ const Header = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#FCFBF4",
+        backgroundColor: "#eeeeee",
         height: "8vh",
         width: "100vw",
         boxShadow: "revert-layer",
@@ -136,7 +138,7 @@ const Header = () => {
               sx={{ p: "10px" }}
               aria-label="search"
             >
-              <SearchIcon />
+              <SearchIcon sx={{color:"black"}} />
             </IconButton>
             <InputBase
               id="search-bar"
@@ -207,7 +209,7 @@ const Header = () => {
               style={{ display: "flex", flexDirection: "column" }}
             >
               <Button>
-                <Link to="/" style={{ textDecoration: "none" }}>
+                <Link to="/home" style={{ textDecoration: "none" }}>
                   <HomeLogo className="menu-logo" />
                   <h4 style={{ fontSize: "12px", textTransform: "none" }}>
                     Home
@@ -216,33 +218,33 @@ const Header = () => {
               </Button>
             </li>
 
-            <li
+            {/* <li
               className="menu-content"
               style={{ display: "flex", flexDirection: "column" }}
             >
               <Button>
-                <Link to="/mynetwork" style={{ textDecoration: "none" }}>
+                <Link to="/products" style={{ textDecoration: "none" }}>
                   <NetworkLogo className="menu-logo" />
                   <h4 style={{ fontSize: "12px", textTransform: "none" }}>
-                    Mynetwork
+                    Quizes
                   </h4>
                 </Link>
               </Button>
-            </li>
+            </li> */}
             <li
               className="menu-content"
               style={{ display: "flex", flexDirection: "column" }}
             >
               <Button>
-                <Link to="/jobs" style={{ textDecoration: "none" }}>
+                <Link to="/products" style={{ textDecoration: "none" }}>
                   <JobsLogo className="menu-logo" />
                   <h4 style={{ fontSize: "12px", textTransform: "none" }}>
-                    Jobs
+                  Quizes
                   </h4>
                 </Link>
               </Button>
             </li>
-            <li
+            {/* <li
               className="menu-content"
               style={{ display: "flex", flexDirection: "column" }}
             >
@@ -267,7 +269,7 @@ const Header = () => {
                   </h4>
                 </Link>
               </Button>
-            </li>
+            </li> */}
             {/* <li className="menu-content">
               <Link to="/profile" style={{ textDecoration: "none" }}>
                 <Avatar
@@ -284,17 +286,17 @@ const Header = () => {
             <hr />
           </ul>
           <Stack flexDirection={"row"} gap={"10px"} marginTop={"10px"}>
-            <Typography>
+            <Typography sx={{color: "grey"}}>
               <img
                 src={calender}
                 alt=""
-                style={{ height: "15px", width: "15px" }}
+                style={{ height: "15px", width: "15px",color: "grey", }}
               />{" "}
               {todayDateString}
             </Typography>
             {/* <CalendarMonthOutlinedIcon sx={{ fontSize: '25px' }} />
                     <TypographyText text={todayDateString} fontSize={'15'} fontWeight={'600'} /> */}
-            <NotificationsIcon />
+            <NotificationsIcon sx={{color: "grey"}} />
           </Stack>
           <Button
             id="basic-button"
@@ -345,8 +347,8 @@ const Header = () => {
             }}
           >
             {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+            <MenuItem sx={{color:"black"}} onClick={handleClose}>My account</MenuItem>
+            <MenuItem sx={{color:"black"}} onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Stack>
         {/* </Stack> */}

@@ -2,14 +2,14 @@ import React, {useEffect, useState} from "react"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import "./card.css"
 import { Link, NavLink } from "react-router-dom"
-import SignUpImg from "../../assets/hello.jpg"
+import SignUpImg from "../../assets/quiz.jpg"
 import Rating from '@mui/material/Rating';
 import { CardContent, CardMedia } from "@mui/material"
 const Cards = ({Item}) => {
-console.log(Item)
+console.log(Item?.quizTitle)
     const [isLoading, setIsLoading] = useState(true)
     // console.log(Item?.student?.map((i) => i))
-console.log(Item?.student)
+console.log(Item)
 // const Photos = Item.student;
 // console.log(Photos)
     useEffect(() => {
@@ -30,12 +30,12 @@ console.log(Item?.student)
         :
         <NavLink to= {`/product/${Item._id}`} style={{textDecoration:"none", color:"white"}}>
             <div className="cards">
-            {
+            {/* {
             Item?.coverimage?.map((i) => (
               <img src={`http://localhost:8080/${i}`} alt="" style={{width: '500px'}}/>
             ))
-            }
-                {/* <img className="cards__img" src= {Item.coverimage} alt="hello" /> */}
+            } */}
+                <img className="cards__img" src= {SignUpImg} alt="hello" />
                 {/* <CardContent sx={{display: "flex", flexDirection: "column", width: '100%', alignItems: 'center', justifyContent: 'space-around', padding: '0'}}>
           {
             photos?.map((i) => (
@@ -44,18 +44,18 @@ console.log(Item?.student)
             } */}
                 {/* </CardContent> */}
                 <div className="cards__overlay">
-                    <div className="card__title">{Item?.title}</div>
+                    <div className="card__title">{Item?.quizTitle}</div>
                     <div className="card__runtime">
                         {Item?.Author}
                        
                         {/* {movie?movie.release_date:""} */}
                         {/* <span className="card__rating">{5}<i className="fas fa-star" /></span> */}
-                        <Rating className="card__rating" name="read-only" value={5} readOnly />
+                        {/* <Rating className="card__rating" name="read-only" value={5} readOnly /> */}
                     </div>
                     <div className="card__description">{Item?.description}</div>
                 </div>
             </div>
-        // </NavLink>
+        </NavLink>
     }
     </>
 }
