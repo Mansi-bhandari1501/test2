@@ -13,12 +13,12 @@ const {
 } = testController;
 const router = express.Router()
 
-router.post('/',requireSignIn, addtest);
-router.post('/addQuestion',requireSignIn, addQuestion);
-router.post('/addResult', requireSignIn,addUserResult);
-router.get('/',requireSignIn,getAllTest)
-router.get('/:_id',requireSignIn,getTest)
+router.post('/', addtest);
+router.post('/addQuestion', addQuestion);
+router.post('/addResult',addUserResult);
+router.get('/',getAllTest)
+router.get('/:_id',getTest)
 router.get('/search',searchController)
-router.delete('/:id',requireSignIn,deleteTest)
+router.delete('/:id',deleteTest)
 export default router;
 

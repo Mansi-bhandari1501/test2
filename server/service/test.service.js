@@ -7,8 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 const addtest = async (req) => {
 
     try {
-        console.log(req.file)
+        // console.log(req.file)
         const uuId = uuidv4();
+        console.log(req)
         // const uuId = (await testModel.countDocuments({}).exec()) + 1001;
         // const email = req.user.email.toLowerCase();
         // const amount = req.body.amount;
@@ -37,16 +38,18 @@ const addtest = async (req) => {
     }
 };
 const addQuestion = async (req) => {
-
+console.log(req.body,"😁😁😁😁😁😁😁😁😁😁😁")
     try {
+        // console.log(req.body,"---------->>>>>>>>>>")
         const testid = req.body.testid;
-        const questionArray = req.body.questionArray;
+        const questionArray = req.body.question;
         const doc = await testModel.findOne({ _id: testid })
         if (!doc) {
             //     return res.status(400).send({ message: "Test doesn't exist!" });
             throw Object.assign(new Error(), { name: "BAD_REQUEST", message: "Test doesn't exist!" });
-            
         }
+            
+        // }
         // if (Date.parse(doc.expiry) < Date.now()) {
         //     // return res.status(400).send({ message: "Test has expired!! " });
         //     throw Object.assign(new Error(), { name: "TIMEOUT", message: "Test has expired!! " });
@@ -73,7 +76,7 @@ const getTest = async (req) => {
     try {
      
         const test = await testModel.findById(req.params)
-        console.log(test)
+        // console.log(test)
         return test
 
     } catch (err) {
@@ -95,10 +98,10 @@ const deleteTest = async (req) => {
 }
 const getAllTest = async (req) => {
     try {
-        console.log("get request")
+        // console.log("get request")
         const tests = await testModel.find({})
             .sort({ createdAt: 'descending' });
-        console.log(tests)
+        // console.log(tests)
         return tests
 
     }

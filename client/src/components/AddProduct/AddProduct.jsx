@@ -1,23 +1,21 @@
-// import SideBar from "../component/SideBar";
-// import TopBar from "../component/TopBar";
 import Card from "@mui/material/Card";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react"; // Import useState hook
-import axios from "axios"; // Import axios library
 import Typography from "@mui/material/Typography";
 import { Box, Stack, TextField } from "@mui/material";
 import Header from "../Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../features/product/productAction";
 import { useNavigate } from "react-router";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddBook = () => {
 const navigate = useNavigate();
-  const user = useSelector((state) => state);
+  const user = useSelector((state) => state.user);
 console.log(user)
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -31,14 +29,14 @@ console.log(user)
     width: 1,
   });
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
 const dispatch = useDispatch()
   const [newUser, setNewAuthor] = useState({
-    title: "",
-    author: "",
+    quizTitle: "",
+    time: "",
     category: "",
     description: "",
   });
+  const notify = () => toast("Test Created");
 // const[image]
   const handleChange = (e) => {
     setNewAuthor({
@@ -47,33 +45,20 @@ const dispatch = useDispatch()
     });
   };
 
-  const handlePhoto = (e) => {
-    setNewAuthor({ ...newUser, coverimage: e.target.files[0] });
+  // const handlePhoto = (e) => {
+  //   setNewAuthor({ ...newUser, coverimage: e.target.files[0] });
 
-  };
-
+  // };
+console.log(newUser)
   const token = user.userToken;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newUser)
-    // const formData = new FormData();
-    // await formData.append("title", newUser.title);
-    // await formData.append("author", newUser.author);
-    // await formData.append("category", newUser.category);
-    // await formData.append("description", newUser.description);
-    // await formData.append("image", newUser.coverimage[0]);
-    //  console.log(formData)
+    console.log(token)
+  
      dispatch(createPost({newUser,token}))
-     navigate('/dashboard')
-    // try {
-    //   const res = await axios.post(
-    //     "http://localhost:8080/book/addbook",
-    //     formData
-    //   );
-    //   console.log(res);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+     toast.success("Test created !");
+    //  navigate('/dashboard')
+
   };
 
   return (
@@ -133,36 +118,14 @@ const dispatch = useDispatch()
                     width: "100%",
                     marginBottom: "2%",
                     fontFamily: "Poppins",
-                    fontSize: "14px", // Set the font size appropriately
+                    fontSize: "14px", 
                   }}
                   placeholder="Enter the book's title"
-                  name="title"
-                  value={newUser.title}
+                  name="quizTitle"
+                  value={newUser.quizTitle}
                   onChange={handleChange}
                 />
-                <Typography
-                  style={{
-                    fontFamily: "Poppins",
-                    fontWeight: "600",
-                    fontSize: "20px",
-                    color: "GrayText",
-                    marginBottom: "0.5%",
-                  }}
-                >
-                  Author
-                </Typography>
-                <TextField
-                  sx={{
-                    width: "100%",
-                    marginBottom: "2%",
-                    fontFamily: "Poppins",
-                    fontSize: "1px",
-                  }}
-                  placeholder="Enter the book's author"
-                  name="author"
-                  value={newUser.author}
-                  onChange={handleChange}
-                ></TextField>
+               
                 <Typography
 
                   style={{
@@ -211,30 +174,30 @@ const dispatch = useDispatch()
                   value={newUser.description}
                   onChange={handleChange}
                 ></TextField>
-               
+                <Typography
+                  style={{
+                    fontFamily: "Poppins",
+                    fontWeight: "600",
+                    fontSize: "20px",
+                    color: "GrayText",
+                    marginBottom: "0.5%",
+                  }}
+                >
+                  Duration
+                </Typography>
+                <TextField
+                  sx={{
+                    width: "100%",
+                    marginBottom: "2%",
+                    fontFamily: "Poppins",
+                    fontSize: "1px",
+                  }}
+                  placeholder="Enter the test duration"
+                  name="time"
+                  value={newUser.time}
+                  onChange={handleChange}
+                ></TextField>
                 <Stack>
-                  {/* <Button
-                    style={{
-                      marginBottom: "2%",
-                      width: "20%",
-                      textTransform: "none",
-                      fontWeight: "600",
-                    }}
-                    component="label"
-                    role={undefined}
-                    variant="contained"
-                    tabIndex={-1}
-                    startIcon={<CloudUploadIcon />}
-                  >
-                    Upload Cover Image
-                    <VisuallyHiddenInput
-                      type="file"
-                      accept=".png, .jpg, .jpeg"
-                      name="photo"
-                      onChange={handlePhoto}
-                    />
-                  </Button> */}
-
                   <Button
                     type="submit"
                     style={{
@@ -252,7 +215,9 @@ const dispatch = useDispatch()
           </Card>
         </Stack>
       </Stack>
+      <ToastContainer />
     </Box>
+     
   );
 };
 

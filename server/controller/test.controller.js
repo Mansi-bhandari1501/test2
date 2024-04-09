@@ -22,7 +22,7 @@ export const addtest = async (req,res) => {
 export const getAllTest = async (req,res) => {
     try{
         const response = await testService.getAllTest(req);
-        console.log("response",response)
+        // console.log("response",response)
         return res.status(200).send({
             success:true,
             message: 'test Fetched successfully',
@@ -37,7 +37,7 @@ export const getAllTest = async (req,res) => {
 export const deleteTest = async (req,res) => {
     try{
         const response = await testService.deleteTest(req);
-        console.log("response",response)
+        // console.log("response",response)
         return res.status(200).send({
             success:true,
             message: 'test deleted successfully',
@@ -50,13 +50,14 @@ export const deleteTest = async (req,res) => {
     }
 }
 export const addQuestion = async (req,res) => {
+    // console.log(req,"requestttt")
     try{
         const response = await testService.addQuestion(req);
-        console.log("response",response)
+        // console.log("response",response)
         return res.status(200).send({
             success:true,
             message: 'questions added successfully',
-            book: response
+            question: response
         })
     }
     catch(error)
@@ -67,7 +68,7 @@ export const addQuestion = async (req,res) => {
 export const addUserResult = async (req,res) => {
     try{
         const response = await testService.addQuestion(req);
-        console.log("response",response)
+        // console.log("response",response)
         return res.status(200).send({
             success:true,
             message: 'Result added successfully',
@@ -82,7 +83,7 @@ export const addUserResult = async (req,res) => {
 export const getTest = async (req,res) => {
     try{
         const response = await testService.getTest(req);
-        console.log("response",response)
+        // console.log("response",response)
         return res.status(200).send({
             success:true,
             message: ' Test fetched succesfully',

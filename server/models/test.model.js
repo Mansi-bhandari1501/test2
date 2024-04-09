@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 
 
-const questionArr = new mongoose.Schema({
+// const questionArr = new mongoose.Schema({
 
-  questions: { type: String },
-  options: [{ option: String, isCorrect: Boolean, id: Number }],
-  correctAnswer: { type: String },
-});
+//   questions: { type: String },
+//   options: [{ option: String, 
+//     // isCorrect: Boolean, 
+//     // id: Number 
+// }],
+//   correctAnswer: { type: String },
+// });
 const testSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -20,16 +23,16 @@ const testSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    Author: {
-        type: String,
-        require: true,
-    },
     category: {
         type: String,
         // enum: ["science", "sst", "Biology", "Technical"],
-        require: true,
     },
-    questionArray: [questionArr],
+    questionArray: [{
+        questions: { type: String },
+        options: [{ option: String }],
+        correctAnswer: { type: String },
+    }],
+
     description: {
         type: String,
     },
@@ -37,16 +40,16 @@ const testSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    time:{
-        type:String
+    time: {
+        type: String
     },
     expiry: {
         type: Date,
-        
+
     },
     created: {
         type: Date,
-      
+
     },
 
 

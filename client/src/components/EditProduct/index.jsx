@@ -10,16 +10,18 @@ import Typography from "@mui/material/Typography";
 import { Box, Stack, TextField } from "@mui/material";
 import Header from "../Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../features/product/productAction";
+import { addQuestion } from "../../features/product/productAction";
 import { useNavigate, useParams } from "react-router";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const EditProduct = () => {
     const navigate = useNavigate();
-    const userid = useParams();
-    console.log(userid.id)
-  const user = useSelector((state) => state);
+    const id = useParams();
+    const testid=id.id;
+    console.log(testid)
+  const user = useSelector((state) => state.user);
 // console.log(user)
   const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -38,11 +40,16 @@ const dispatch = useDispatch()
 //   const [questionArray, setQuestionArray] = useState({
 //   const [title, setTitle] = useState("")
   const [questions, setQuestions] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
 
-  const[options,setOptions]= useState([{
-    option:"",
-    isCorrect:"false"
-  }])
+  const[options,setOptions]= useState({
+    option1:"",
+    option2:"",
+    option3:"",
+    option4:"",
+    correctAnswer:""
+    // isCorrect:"false"
+  })
 // const[image]
 //   const handleChange = (e) => {
 //     setNewAuthor({
@@ -50,9 +57,20 @@ const dispatch = useDispatch()
 //       [e.target.name]: e.target.value,
 //     });
 //   };
+const token = user.userToken;
+const question={
+
+  questions,
+  options
+
+}
+const data ={
+  testid,
+  question
+}
   const handleChange = (e) => {
     setOptions({
-      
+      ...options,
       [e.target.name]: e.target.value,
     });
   };
@@ -61,14 +79,13 @@ const dispatch = useDispatch()
 //     setNewAuthor({ ...newUser, coverimage: e.target.files[0] });
 
 //   };
-
-  const token = user.userToken;
+console.log("questionss @@@",data)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newUser)
     
-     dispatch(createPost({newUser,token}))
-     navigate('/home')
+     dispatch(addQuestion({data,token}))
+     toast.success("question added !");
+    //  navigate('/home')
     // try {
     //   const res = await axios.post(
     //     "http://localhost:8080/book/addbook",
@@ -120,29 +137,6 @@ const dispatch = useDispatch()
 
             <form onSubmit={handleSubmit} encType="multipart/form-data">
               
-              {/* <Typography
-                style={{
-                  fontFamily: "Poppins",
-                  fontWeight: "600",
-                  fontSize: "20px",
-                  color: "GrayText",
-                  marginBottom: "0.5%",
-                }}
-              >
-                Author
-              </Typography> */}
-              {/* <TextField
-                sx={{
-                  width: "100%",
-                  marginBottom: "2%",
-                  fontFamily: "Poppins",
-                  fontSize: "1px",
-                }}
-                placeholder="Enter the book's author"
-                name="author"
-                value={newUser.author}
-                onChange={handleChange}
-              ></TextField> */}
               <Typography
 
                 style={{
@@ -163,7 +157,7 @@ const dispatch = useDispatch()
                   fontSize: "1px",
                 }}
                 placeholder="Enter the Questions"
-                name="category"
+                name="questions"
                 value={questions}
                 onChange={(e)=>{setQuestions(e.target.value)}}
               ></TextField>
@@ -186,21 +180,9 @@ const dispatch = useDispatch()
                   fontFamily: "Poppins",
                   fontSize: "1px",
                 }}
-                // placeholder="Enter the options"
-                name="option"
-                value={options}
-                onChange={handleChange}
-              ></TextField>
-              <TextField
-                sx={{
-                  width: "100%",
-                  marginBottom: "2%",
-                  fontFamily: "Poppins",
-                  fontSize: "1px",
-                }}
-                // placeholder="Enter the options"
-                name="description"
-                value={options}
+                placeholder="Enter the options"
+                name="option1"
+                value={options.option1}
                 onChange={handleChange}
               ></TextField>
               <TextField
@@ -211,8 +193,8 @@ const dispatch = useDispatch()
                   fontSize: "1px",
                 }}
                 placeholder="Enter the options"
-                name="description"
-                value={options}
+                name="option2"
+                value={options.option2}
                 onChange={handleChange}
               ></TextField>
               <TextField
@@ -223,34 +205,35 @@ const dispatch = useDispatch()
                   fontSize: "1px",
                 }}
                 placeholder="Enter the options"
-                name="description"
-                value={options}
+                name="option3"
+                value={options.option3}
                 onChange={handleChange}
               ></TextField>
-             
+              <TextField
+                sx={{
+                  width: "100%",
+                  marginBottom: "2%",
+                  fontFamily: "Poppins",
+                  fontSize: "1px",
+                }}
+                placeholder="Enter the options"
+                name="option4"
+                value={options.option4}
+                onChange={handleChange}
+              ></TextField>
+              <TextField
+                sx={{
+                  width: "100%",
+                  marginBottom: "2%",
+                  fontFamily: "Poppins",
+                  fontSize: "1px",
+                }}
+                placeholder="Enter the correct options"
+                name="correctAnswer"
+                value={options.correctAnswer}
+                onChange={handleChange}
+              ></TextField>
               <Stack>
-                {/* <Button
-                  style={{
-                    marginBottom: "2%",
-                    width: "20%",
-                    textTransform: "none",
-                    fontWeight: "600",
-                  }}
-                  component="label"
-                  role={undefined}
-                  variant="contained"
-                  tabIndex={-1}
-                  startIcon={<CloudUploadIcon />}
-                >
-                  Upload Cover Image
-                  <VisuallyHiddenInput
-                    type="file"
-                    accept=".png, .jpg, .jpeg"
-                    name="photo"
-                    onChange={handlePhoto}
-                  />
-                </Button> */}
-
                 <Button
                   type="submit"
                   style={{
@@ -268,6 +251,7 @@ const dispatch = useDispatch()
         </Card>
       </Stack>
     </Stack>
+    <ToastContainer />
   </Box>
   )
 }

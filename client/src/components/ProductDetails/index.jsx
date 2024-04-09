@@ -57,7 +57,7 @@ const ProductDetail = () => {
       };
     console.log(question[currentQuestion].options)
     const options = question[currentQuestion].options
-    console.log(options[0].option)
+    console.log(options[1].option)
       return (
         <>
 

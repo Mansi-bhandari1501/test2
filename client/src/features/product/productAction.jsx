@@ -40,10 +40,28 @@ export const createPost = createAsyncThunk(
     async ({ newUser, token }) => {
         try {
 
-            console.log("token", newUser);
+            console.log("token", token);
             const res = await axios.post("http://localhost:8080/tests", newUser, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    // 'Content-Type': 'multipart/form-data',
+                    'Authorization': token,
+                }
+            })
+            console.log(res)
+            return res
+        } catch (error) {
+            throw error;
+        }
+    })
+export const addQuestion = createAsyncThunk(
+    ACTION_TYPE.ADD_QUESTION,
+    async ({data,token} ) => {
+        try {
+            
+            console.log("token-data", data);
+            const res = await axios.post("http://localhost:8080/tests/addQuestion",data, {
+                headers: {
+                    // 'Content-Type': 'multipart/form-data',
                     'Authorization': token,
                 }
             })
