@@ -109,6 +109,19 @@ const getAllTest = async (req) => {
         throw (error)
     }
 }
+const getAllQuestions = async (req) => {
+    try {
+        console.log("get request",req.params)
+        const tests = await testModel.findById(req.params)
+            // .sort({ createdAt: 'descending' });
+        console.log(tests)
+        return tests
+
+    }
+    catch (error) {
+        throw (error)
+    }
+}
 const addUserResult = async (req) => {
     try {
         const userId= req.body.userId
@@ -137,6 +150,7 @@ const testService = {
     getTest,
     deleteTest,
     getAllTest,
+    getAllQuestions,
     addQuestion,
     addUserResult
 };

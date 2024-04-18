@@ -34,6 +34,20 @@ export const getAllTest = async (req,res) => {
         errorHandler(res,error);
     }
 }
+export const getAllQuestions = async (req,res) => {
+    try{
+        const response = await testService.getAllQuestions(req);
+        // console.log("response",response.questionArray)
+        return res.status(200).send({
+          
+            test: response.questionArray
+        })
+    }
+    catch(error)
+    {
+        errorHandler(res,error);
+    }
+}
 export const deleteTest = async (req,res) => {
     try{
         const response = await testService.deleteTest(req);
@@ -67,7 +81,7 @@ export const addQuestion = async (req,res) => {
 }
 export const addUserResult = async (req,res) => {
     try{
-        const response = await testService.addQuestion(req);
+        const response = await testService(req);
         // console.log("response",response)
         return res.status(200).send({
             success:true,
@@ -127,14 +141,15 @@ const searchController = async (req, res) => {
     }
   };
 
-const bookController = {
+const testController = {
     addtest,
     getTest,
     deleteTest,
     getAllTest,
     addQuestion,
     addUserResult,
-    searchController
+    searchController,
+    getAllQuestions
 }
 
-export default bookController;
+export default testController;

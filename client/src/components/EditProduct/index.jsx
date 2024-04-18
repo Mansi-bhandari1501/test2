@@ -75,26 +75,12 @@ const data ={
     });
   };
 
-//   const handlePhoto = (e) => {
-//     setNewAuthor({ ...newUser, coverimage: e.target.files[0] });
-
-//   };
 console.log("questionss @@@",data)
   const handleSubmit = async (e) => {
     e.preventDefault();
     
      dispatch(addQuestion({data,token}))
      toast.success("question added !");
-    //  navigate('/home')
-    // try {
-    //   const res = await axios.post(
-    //     "http://localhost:8080/book/addbook",
-    //     formData
-    //   );
-    //   console.log(res);
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
   return (
     <Box  bgcolor={"#F8FAFB"}>

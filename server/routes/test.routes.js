@@ -9,7 +9,8 @@ const {
     getAllTest,
     addQuestion,
     addUserResult,
-    searchController
+    searchController,
+    getAllQuestions
 } = testController;
 const router = express.Router()
 
@@ -17,6 +18,7 @@ router.post('/', addtest);
 router.post('/addQuestion', addQuestion);
 router.post('/addResult',addUserResult);
 router.get('/',getAllTest)
+router.get('/getQuestions/:_id',getAllQuestions)
 router.get('/:_id',getTest)
 router.get('/search',searchController)
 router.delete('/:id',deleteTest)
